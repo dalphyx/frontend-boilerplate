@@ -1,0 +1,6 @@
+{
+  "extends": "dalphyx/browser",
+  "rules": {
+    "no-new": 0
+  }
+}

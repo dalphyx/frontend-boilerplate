@@ -1,0 +1,46 @@
+{
+  "name": "frontend-boilerplate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A boilerplate for damned frontend",
+  "license": "MIT",
+  "scripts": {
+    "test": "ava ./test --verbose",
+    "clean": "rimraf dist",
+    "build": "NODE_ENV=development webpack",
+    "build:prod": "NODE_ENV=production webpack -p"
+  },
+  "author": "dalphyx <wjcbmk@gmail.com>",
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "babel-cli": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-preset-es2015-webpack": "^6.4.2",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.11.6",
+    "css-loader": "^0.23.1",
+    "eslint": "^3.2.2",
+    "eslint-config-dalphyx": "0.0.4",
+    "eslint-loader": "^1.5.0",
+    "extract-text-webpack-plugin": "^2.0.0-beta.3",
+    "jsdom": "^9.4.1",
+    "pokore": "0.0.2",
+    "postcss-loader": "^0.9.1",
+    "rimraf": "^2.5.4",
+    "style-loader": "^0.13.1",
+    "vue": "^2.0.0-beta.6",
+    "vue-html-loader": "^1.2.3",
+    "vue-loader": "^8.5.3",
+    "vue-style-loader": "^1.0.0",
+    "webpack": "^2.1.0-beta.20"
+  },
+  "dependencies": {
+    "vue": "^2.0.0-beta.6",
+    "vuex": "^1.0.0-rc.2"
+  },
+  "ava": {
+    "babel": "inherit",
+    "require": "./test/helpers/setup-browser-env.js"
+  }
+}
