@@ -1,5 +1,5 @@
 import App from './app.vue'
-import Vue from 'vue/dist/vue'
+import Vue from 'vue'
 
 if (typeof window !== 'undefined') {
   new Vue({

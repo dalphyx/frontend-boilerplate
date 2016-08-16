@@ -10,13 +10,14 @@ function isProduction () {
 
 const webpackConfig = {
   debug: isProduction(),
-  module: {}
+  module: {},
+  resolve: {}
 }
 
 webpackConfig.entry = {
   app: './client/main.js',
   vendor: [
-    'vue/dist/vue'
+    'vue'
   ]
 }
 
@@ -52,6 +53,10 @@ webpackConfig.module.loaders = [
     })
   }
 ]
+
+webpackConfig.resolve.alias = {
+  'vue': 'vue/dist/vue.js'
+}
 
 webpackConfig.vue = {
   postcss: {
