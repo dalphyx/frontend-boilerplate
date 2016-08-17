@@ -61,9 +61,7 @@ webpackConfig.resolve.alias = {
 webpackConfig.vue = {
   postcss: {
     plugins: [
-      pokore.import({
-        extensions: ['sss']
-      }),
+      pokore.import,
       pokore.colorAlpha,
       pokore.extend,
       pokore.size,
@@ -97,10 +95,7 @@ webpackConfig.plugins = [
 webpackConfig.postcss = _webpack => {
   return {
     plugins: [
-      pokore.import({
-        extensions: ['sss'],
-        addDependencyTo: _webpack
-      }),
+      pokore.import,
       pokore.colorAlpha,
       pokore.extend,
       pokore.size,
