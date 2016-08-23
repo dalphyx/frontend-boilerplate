@@ -14,6 +14,18 @@ const webpackConfig = {
   resolve: {}
 }
 
+const postcssPlugins = [
+  pokore.import,
+  pokore.colorAlpha,
+  pokore.extend,
+  pokore.size,
+  pokore.reset,
+  pokore.propertylookup,
+  pokore.autoprefixer,
+  pokore.nested,
+  pokore.sorting({ 'sort-order': pokore.cssortie })
+]
+
 webpackConfig.entry = {
   app: './client/main.js',
   vendor: [
@@ -60,16 +72,7 @@ webpackConfig.resolve.alias = {
 
 webpackConfig.vue = {
   postcss: {
-    plugins: [
-      pokore.import,
-      pokore.colorAlpha,
-      pokore.extend,
-      pokore.size,
-      pokore.reset,
-      pokore.propertylookup,
-      pokore.autoprefixer,
-      pokore.sorting({ 'sort-order': pokore.cssortie })
-    ],
+    plugins: postcssPlugins,
     options: {
       parser: pokore.sugarss
     }
@@ -94,16 +97,7 @@ webpackConfig.plugins = [
 
 webpackConfig.postcss = _webpack => {
   return {
-    plugins: [
-      pokore.import,
-      pokore.colorAlpha,
-      pokore.extend,
-      pokore.size,
-      pokore.reset,
-      pokore.propertylookup,
-      pokore.autoprefixer,
-      pokore.sorting({ 'sort-order': pokore.cssortie })
-    ],
+    plugins: postcssPlugins,
     parser: pokore.sugarss
   }
 }
