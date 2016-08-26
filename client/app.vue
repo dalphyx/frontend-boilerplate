@@ -8,18 +8,19 @@
 </template>
 
 <script>
-import { incrementCounter } from './actions/actions'
-import { getCount } from './getters/getter'
+import { mapGetters, mapActions } from 'vuex'
 import store from './stores/store'
 export default {
   store,
-  vuex: {
-    actions: {
-      increment: incrementCounter
-    },
-    getters: {
-      countValue: getCount
-    }
+  computed: {
+    ...mapGetters({
+      'countValue': 'getCount'
+    })
+  },
+  methods: {
+    ...mapActions({
+      'increment': 'incrementCounter'
+    })
   }
 }
 </script>
