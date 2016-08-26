@@ -16,7 +16,7 @@
     "babel-cli": "^6.14.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.12.0",
-    "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-stage-2": "^6.13.0",
     "babel-register": "^6.14.0",
     "css-loader": "^0.24.0",
     "eslint": "^3.3.1",
@@ -30,7 +30,7 @@
     "style-loader": "^0.13.1",
     "vue-loader": "^9.3.0",
     "vue-style-loader": "^1.0.0",
-    "webpack": "^2.1.0-beta.20"
+    "webpack": "^2.1.0-beta.21"
   },
   "dependencies": {
     "vue": "^2.0.0-rc.3",
@@ -38,6 +38,9 @@
   },
   "ava": {
     "babel": "inherit",
-    "require": "./test/helpers/setup-browser-env.js"
+    "require": [
+      "babel-register",
+      "./test/helpers/setup-browser-env.js"
+    ]
   }
 }

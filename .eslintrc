@@ -1,5 +1,5 @@
 {
-  "extends": "dalphyx/browser",
+  "extends": "dalphyx",
   "rules": {
     "no-new": 0
   }
