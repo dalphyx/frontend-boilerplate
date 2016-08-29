@@ -9,7 +9,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import store from './stores/store'
+import { store } from './stores/store'
 export default {
   store,
   computed: {
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      'increment': 'incrementCounter'
+      'increment': 'INCREMENT_COUNTER'
     })
   }
 }
