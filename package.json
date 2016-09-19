@@ -5,7 +5,7 @@
   "description": "A boilerplate for damned frontend",
   "license": "MIT",
   "scripts": {
-    "test": "ava ./test --verbose",
+    "test": "BABEL_ENV=ava ava ./test --verbose",
     "clean": "rimraf dist",
     "build": "NODE_ENV=development webpack",
     "build:prod": "NODE_ENV=production webpack -p"
@@ -40,7 +40,6 @@
   "ava": {
     "babel": "inherit",
     "require": [
-      "babel-register",
       "./test/helpers/setup-browser-env.js"
     ]
   }

@@ -50,21 +50,7 @@ webpackConfig.module.loaders = [
   {
     test: /\.js[x]?$/,
     loader: 'babel',
-    exclude: /node_modules/,
-    // Setting babelrc to false, course ava will use it for transpile sources.
-    // Disabled es2015 modules, so webpack2 can use tree shaking.
-    query: {
-      babelrc: false,
-      presets: [
-        [
-          'es2015',
-          {
-            'modules': false
-          }
-        ],
-        'stage-2'
-      ]
-    }
+    exclude: /node_modules/
   },
   {
     test: /\.vue$/,

@@ -1,6 +1,22 @@
 {
-  "presets": [
-    "es2015",
+  presets: [
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
     "stage-2"
-  ]
+  ],
+  plugins: [
+    "transform-runtime"
+  ],
+  "env": {
+    "ava": {
+      "presets": [
+        "es2015",
+        "stage-2"
+      ]
+    }
+  }
 }
