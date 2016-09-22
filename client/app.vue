@@ -14,12 +14,12 @@ export default {
   store,
   computed: {
     ...mapGetters({
-      'countValue': 'getCount'
+      countValue: 'getCount'
     })
   },
   methods: {
     ...mapActions({
-      'increment': 'INCREMENT_COUNTER'
+      increment: 'INCREMENT_COUNTER'
     })
   }
 }

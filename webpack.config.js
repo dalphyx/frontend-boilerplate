@@ -1,17 +1,11 @@
 const webpack = require('webpack')
-const { resolve } = require('path')
+const path = require('path')
 const pokore = require('pokore')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 
 function isProduction () {
   return process.env.NODE_ENV === 'production'
-}
-
-const webpackConfig = {
-  debug: isProduction(),
-  module: {},
-  resolve: {}
 }
 
 const postcssPlugins = [
@@ -26,85 +20,96 @@ const postcssPlugins = [
   pokore.sorting({ 'sort-order': pokore.cssortie })
 ]
 
-webpackConfig.entry = {
-  app: './client/main.js',
-  vendor: [
-    'vue'
-  ]
-}
-
-webpackConfig.output = {
-  filename: '[name].js',
-  path: resolve(__dirname, 'dist')
-}
-
-webpackConfig.module.preLoaders = [
-  {
-    test: /\.js[x]?$/,
-    loader: 'eslint',
-    exclude: /node_modules/
-  }
-]
-
-webpackConfig.module.loaders = [
-  {
-    test: /\.js[x]?$/,
-    loader: 'babel',
-    exclude: /node_modules/
+const webpackConfig = {
+  entry: {
+    app: './client/main.js',
+    vendor: [
+      'vue'
+    ]
   },
-  {
-    test: /\.vue$/,
-    loader: 'vue'
+
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist')
   },
-  {
-    test: /\.sss$/,
-    loader: ExtractTextPlugin.extract({
-      fallbackLoader: 'style-loader',
-      loader: 'css!postcss',
-      publicPath: "../"
-    })
-  }
-]
 
-webpackConfig.resolve.alias = {
-  'vue': 'vue/dist/vue.js'
-}
+  module: {
+    rules: [
+      {
+        test: /\.js[x]?$/,
+        enforce: 'pre',
+        loader: 'eslint',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.js[x]?$/,
+        loader: 'babel',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue'
+      },
+      {
+        test: /\.sss$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css!postcss',
+          publicPath: "../"
+        })
+      }
+    ]
+  },
 
-webpackConfig.vue = {
-  postcss: {
-    plugins: postcssPlugins,
-    options: {
-      parser: pokore.sugarss
+  resolve: {
+    alias: {
+      'vue': 'vue/dist/vue.js'
     }
   },
-  loaders: {
-    css: ExtractTextPlugin.extract('css'),
-    sss: ExtractTextPlugin.extract('css!postcss')
-  }
-}
 
-webpackConfig.plugins = [
-  new ExtractTextPlugin({
-    filename: "./css/[name].css",
-    disable: false,
-    allChunks: true
-  }),
+  resolveLoader: {
+    modules: [path.join(__dirname, 'node_modules')]
+  },
 
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor'
-  })
-]
+  plugins: [
+    new ExtractTextPlugin({
+      filename: "./css/[name].css",
+      disable: false,
+      allChunks: true
+    }),
 
-webpackConfig.postcss = _webpack => {
-  return {
-    plugins: postcssPlugins,
-    parser: pokore.sugarss
-  }
-}
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
 
-webpackConfig.eslint = {
-  failOnWarning: false,
-  failOnError: true
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        eslint: {
+          failOnWarning: false,
+          failOnError: true
+        },
+        vue: {
+          postcss: {
+            plugins: postcssPlugins,
+            options: {
+              parser: pokore.sugarss
+            }
+          },
+          loaders: {
+            js: 'babel!eslint',
+            css: ExtractTextPlugin.extract('css'),
+            sss: ExtractTextPlugin.extract('css!postcss')
+          }
+        },
+        postcss: (_webpack) => {
+          return {
+            plugins: postcssPlugins,
+            parser: pokore.sugarss
+          }
+        }
+      }
+    })
+  ]
 }
 
 module.exports = webpackConfig
