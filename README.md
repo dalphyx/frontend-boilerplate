@@ -6,12 +6,13 @@ A boilerplate for damned frontend.
 
 - [x] Webpack 2.0
 - [x] Vue 2.0
-- [x] Vuex
+- [x] Vuex 2.0
 - [x] Babel
 - [x] Postcss
 - [x] Sugarss
 - [x] Ava
 - [x] Eslint
+- [x] HMR
 
 ## Installation
 
