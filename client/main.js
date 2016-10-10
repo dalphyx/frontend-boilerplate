@@ -7,3 +7,7 @@ if (typeof window !== 'undefined') {
     render: h => h(App)
   })
 }
+
+if (module.hot) {
+  module.hot.accept()
+}

@@ -2,10 +2,15 @@ const webpack = require('webpack')
 const path = require('path')
 const pokore = require('pokore')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const autoprefixer = require('autoprefixer')
+const assetsWebpackPlugin = require('assets-webpack-plugin')
+const webpackMd5Hash = require('webpack-md5-hash')
 
 function isProduction () {
   return process.env.NODE_ENV === 'production'
+}
+
+function isDev () {
+  return process.env.NODE_ENV === 'development'
 }
 
 const postcssPlugins = [
@@ -22,7 +27,10 @@ const postcssPlugins = [
 
 const webpackConfig = {
   entry: {
-    app: './client/main.js',
+    app: [
+      'webpack-hot-middleware/client',
+      './client/main.js'
+    ],
     vendor: [
       'vue'
     ]
@@ -30,7 +38,8 @@ const webpackConfig = {
 
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve('./', 'dist'),
+    publicPath: '/static/'
   },
 
   module: {
@@ -55,7 +64,8 @@ const webpackConfig = {
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
           loader: 'css!postcss',
-          publicPath: "../"
+          path: path.resolve('.', 'dist'),
+          publicPath: "/static/"
         })
       }
     ]
@@ -68,14 +78,22 @@ const webpackConfig = {
   },
 
   resolveLoader: {
-    modules: [path.join(__dirname, 'node_modules')]
+    modules: [path.resolve('.', 'node_modules')]
   },
 
   plugins: [
     new ExtractTextPlugin({
-      filename: "./css/[name].css",
+      filename: "/css/[name].css",
       disable: false,
       allChunks: true
+    }),
+
+    new webpack.HotModuleReplacementPlugin(),
+
+    new webpackMd5Hash(),
+
+    new assetsWebpackPlugin({
+      prettyPrint: true
     }),
 
     new webpack.optimize.CommonsChunkPlugin({
