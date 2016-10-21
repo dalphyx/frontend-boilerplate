@@ -57,7 +57,20 @@ const webpackConfig = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue',
+        options: {
+          postcss: {
+            plugins: postcssPlugins,
+            options: {
+              parser: pokore.sugarss
+            }
+          },
+          loaders: {
+            js: 'babel!eslint',
+            css: ExtractTextPlugin.extract('css'),
+            sss: ExtractTextPlugin.extract('css!postcss')
+          }
+        }
       },
       {
         test: /\.sss$/,
@@ -105,19 +118,6 @@ const webpackConfig = {
         eslint: {
           failOnWarning: false,
           failOnError: true
-        },
-        vue: {
-          postcss: {
-            plugins: postcssPlugins,
-            options: {
-              parser: pokore.sugarss
-            }
-          },
-          loaders: {
-            js: 'babel!eslint',
-            css: ExtractTextPlugin.extract('css'),
-            sss: ExtractTextPlugin.extract('css!postcss')
-          }
         },
         postcss: (_webpack) => {
           return {
