@@ -8,8 +8,8 @@
     "clean": "rimraf dist",
     "test": "cross-env BABEL_ENV=ava ava ./test --verbose",
     "dev": "cross-env NODE_ENV=development nodemon --watch client --exec \"npm run build && node\" ./build/dev-server",
-    "build": "cross-env NODE_ENV=development webpack --config ./build/webpack.config",
-    "build:prod": "cross-env NODE_ENV=production webpack -p --config ./build/webpack.config"
+    "build": "cross-env NODE_ENV=development webpack --config ./build/webpack.config.dev",
+    "build:prod": "cross-env NODE_ENV=production webpack -p --config ./build/webpack.config.prod"
   },
   "author": "dalphyx <wjcbmk@gmail.com>",
   "devDependencies": {

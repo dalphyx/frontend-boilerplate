@@ -1,17 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const pokore = require('pokore')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const assetsWebpackPlugin = require('assets-webpack-plugin')
 const webpackMd5Hash = require('webpack-md5-hash')
-
-function isProduction () {
-  return process.env.NODE_ENV === 'production'
-}
-
-function isDev () {
-  return process.env.NODE_ENV === 'development'
-}
 
 const postcssPlugins = [
   pokore.import,
@@ -28,7 +18,7 @@ const postcssPlugins = [
 const webpackConfig = {
   entry: {
     app: [
-      'webpack-hot-middleware/client',
+      'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
       './client/main.js'
     ],
     vendor: [
@@ -39,7 +29,7 @@ const webpackConfig = {
   output: {
     filename: '[name].js',
     path: path.resolve('./', 'dist'),
-    publicPath: '/static/'
+    publicPath: 'http://localhost:3000/static/'
   },
 
   module: {
@@ -66,20 +56,13 @@ const webpackConfig = {
             }
           },
           loaders: {
-            js: 'babel!eslint',
-            css: ExtractTextPlugin.extract('css'),
-            sss: ExtractTextPlugin.extract('css!postcss')
+            js: 'babel!eslint'
           }
         }
       },
       {
         test: /\.sss$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css!postcss',
-          path: path.resolve('.', 'dist'),
-          publicPath: "/static/"
-        })
+        loader: ['style', 'css', 'postcss']
       }
     ]
   },
@@ -95,19 +78,7 @@ const webpackConfig = {
   },
 
   plugins: [
-    new ExtractTextPlugin({
-      filename: "/css/[name].css",
-      disable: false,
-      allChunks: true
-    }),
-
     new webpack.HotModuleReplacementPlugin(),
-
-    new webpackMd5Hash(),
-
-    new assetsWebpackPlugin({
-      prettyPrint: true
-    }),
 
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
