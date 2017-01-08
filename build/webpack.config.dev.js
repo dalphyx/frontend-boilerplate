@@ -38,17 +38,17 @@ const webpackConfig = {
       {
         test: /\.js[x]?$/,
         enforce: 'pre',
-        loader: 'eslint',
+        loader: 'eslint-loader',
         exclude: /node_modules/
       },
       {
         test: /\.js[x]?$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
         test: /\.vue$/,
-        loader: 'vue',
+        loader: 'vue-loader',
         options: {
           postcss: {
             plugins: postcssPlugins,
@@ -57,13 +57,13 @@ const webpackConfig = {
             }
           },
           loaders: {
-            js: 'babel!eslint'
+            js: 'babel-loader!eslint-loader'
           }
         }
       },
       {
         test: /\.sss$/,
-        loader: ['style', 'css', 'postcss']
+        loader: ['style-loader', 'css-loader', 'postcss-loader']
       }
     ]
   },

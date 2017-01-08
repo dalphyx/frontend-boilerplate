@@ -38,17 +38,17 @@ const webpackConfig = {
       {
         test: /\.js[x]?$/,
         enforce: 'pre',
-        loader: 'eslint',
+        loader: 'eslint-loader',
         exclude: /node_modules/
       },
       {
         test: /\.js[x]?$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
         test: /\.vue$/,
-        loader: 'vue',
+        loader: 'vue-loader',
         options: {
           postcss: {
             plugins: postcssPlugins,
@@ -57,9 +57,9 @@ const webpackConfig = {
             }
           },
           loaders: {
-            js: 'babel!eslint',
-            css: ExtractTextPlugin.extract('css'),
-            sss: ExtractTextPlugin.extract('css!postcss')
+            js: 'babel-loader!eslint-loader',
+            css: ExtractTextPlugin.extract('css-loader'),
+            sss: ExtractTextPlugin.extract('css-loader!postcss-loader')
           }
         }
       },
@@ -67,7 +67,7 @@ const webpackConfig = {
         test: /\.sss$/,
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: 'css!postcss',
+          loader: 'css-loader!postcss-loader',
           path: path.resolve('.', 'dist'),
           publicPath: "/static/"
         })
