@@ -10,7 +10,7 @@ A boilerplate for damned frontend.
 - [x] Babel
 - [x] Postcss
 - [x] Sugarss
-- [x] Ava
+- [x] Jest
 - [x] Eslint
 - [x] HMR
 

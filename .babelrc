@@ -12,7 +12,7 @@
     "transform-runtime"
   ],
   "env": {
-    "ava": {
+    "test": {
       "presets": [
         "es2015",
         "stage-2"
