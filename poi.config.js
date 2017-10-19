@@ -1,16 +1,4 @@
-const pokore = require('pokore')
-
-const postcssPlugins = [
-  pokore.import,
-  pokore.colorAlpha,
-  pokore.extend,
-  pokore.size,
-  pokore.reset,
-  pokore.propertylookup,
-  pokore.autoprefixer,
-  pokore.nested,
-  pokore.sorting({ 'sort-order': pokore.cssortie })
-]
+const { preset, sugarss } = require('pokore')
 
 module.exports = (options, req) => ({
   entry: './src/main.js',
@@ -33,9 +21,9 @@ module.exports = (options, req) => ({
   },
 
   postcss: {
-    plugins: postcssPlugins,
+    plugins: preset,
     options: {
-      parser: pokore.sugarss
+      parser: sugarss
     }
   },
 
