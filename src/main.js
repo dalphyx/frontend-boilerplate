@@ -3,11 +3,7 @@ import Vue from 'vue'
 
 if (typeof window !== 'undefined') {
   new Vue({
-    el: '.app',
+    el: '#app',
     render: h => h(App)
   })
-}
-
-if (module.hot) {
-  module.hot.accept()
 }

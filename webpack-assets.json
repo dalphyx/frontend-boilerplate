@@ -1,9 +1,0 @@
-{
-  "app": {
-    "js": "/static/app.js",
-    "css": "/static//css/app.css"
-  },
-  "vendor": {
-    "js": "/static/vendor.js"
-  }
-}

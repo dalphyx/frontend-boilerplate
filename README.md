@@ -4,7 +4,7 @@ A boilerplate for damned frontend.
 
 ## To Do List
 
-- [x] Webpack 2.0
+- [x] Poi
 - [x] Vue 2.0
 - [x] Vuex 2.0
 - [x] Babel

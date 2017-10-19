@@ -1,4 +1,4 @@
-import { mutations } from '../client/stores/store'
+import { mutations } from '../src/stores/store'
 
 test('mutation test passed', () => {
   const state = { count: 0 }
