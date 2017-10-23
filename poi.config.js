@@ -1,5 +1,3 @@
-const { preset, sugarss } = require('pokore')
-
 module.exports = (options, req) => ({
   entry: './src/main.js',
   extendWebpack(config) {
@@ -17,13 +15,6 @@ module.exports = (options, req) => ({
   vue: {
     loaders: {
       js: 'babel-loader!eslint-loader'
-    }
-  },
-
-  postcss: {
-    plugins: preset,
-    options: {
-      parser: sugarss
     }
   },
 

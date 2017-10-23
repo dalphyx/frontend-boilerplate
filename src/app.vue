@@ -26,10 +26,11 @@ export default {
 </script>
 
 <style>
-.trigger
-  display: inline-block
-  padding: 10px
-  color: #333
-  box-shadow: 0 0 1px #000.5
-  border-radius: 5px
+.trigger {
+  display: inline-block;
+  padding: 10px;
+  color: #333;
+  box-shadow: 0 0 1px rgba(0, 0, 0, .5)
+  border-radius: 5px;
+}
 </style>
