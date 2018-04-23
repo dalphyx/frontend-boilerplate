@@ -1,5 +1,9 @@
 {
-  "extends": "dalphyx",
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module"
+  },
+  "extends": ["dalphyx", "plugin:vue/recommended"],
   "rules": {
     "no-new": 0
   }

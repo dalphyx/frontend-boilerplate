@@ -1,7 +1,9 @@
 <template>
   <div class="app">
     <h1>{{ countValue }}</h1>
-    <div class="trigger" @click="increment">
+    <div
+      class="trigger"
+      @click="increment">
       Increment + 1
     </div>
   </div>
@@ -30,7 +32,7 @@ export default {
   display: inline-block;
   padding: 10px;
   color: #333;
-  box-shadow: 0 0 1px rgba(0, 0, 0, .5)
+  box-shadow: 0 0 1px rgba(0, 0, 0, .5);
   border-radius: 5px;
 }
 </style>
