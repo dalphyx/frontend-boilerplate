@@ -12,6 +12,7 @@
   },
   "author": "dalphyx <wjcbmk@gmail.com>",
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.46",
     "@babel/preset-env": "^7.0.0-beta.46",
     "@babel/preset-stage-2": "^7.0.0-beta.46",
     "@poi/plugin-eslint": "^10.0.0",
