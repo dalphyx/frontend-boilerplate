@@ -9,7 +9,6 @@ A boilerplate for damned frontend.
 - [x] Vuex 2.0
 - [x] Babel
 - [x] Postcss
-- [x] Sugarss
 - [x] Jest
 - [x] Eslint
 - [x] HMR
